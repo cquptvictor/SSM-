@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 元素定义如何连接目标数据库-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm?serverTimezone=GMT&amp;useSSL=false"
+                        userId="root"
+                        password="202106">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--元素来指定生成 Java 模型对象所属的包-->
+        <javaModelGenerator targetPackage="com.zyx.domain" targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--元素来指定生成 SQL 映射文件所属的包和的目标项目-->
+        <sqlMapGenerator targetPackage="resources/mapper/"  targetProject=".\src\main">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--指定dao接口生成的位置，mapper接口-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zyx.dao"  targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!--指定每个表的生成策略-->
+        <table  schema="ssm" tableName="dept" domainObjectName="Department"  />
+        <table schema="ssm" tableName="emp" domainObjectName="Employee"/>
+    </context>
+</generatorConfiguration>
